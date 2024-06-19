@@ -12,7 +12,7 @@ struct MessageView: View {
                 .cornerRadius(10)
                 .foregroundColor(isCurrentUser ? .white : .primary)
                 .padding(.horizontal, 10)
-                .padding(.vertical, 5)
+                .padding(.vertical, 3)
             
             
             Text(message.formattedTimestamp)
