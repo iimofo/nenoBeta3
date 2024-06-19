@@ -33,7 +33,7 @@ struct ChatListView: View {
         .onAppear {
             fetchChats()
             randomString = generateRandomString(length: 25)
-            print(randomString)
+//            print(randomString)
         }
         .onDisappear {
             listener?.remove()
