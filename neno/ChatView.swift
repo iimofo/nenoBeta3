@@ -1,5 +1,6 @@
 import SwiftUI
 import Firebase
+import UserNotifications
 
 struct ChatView: View {
     let chat: Chat
@@ -7,6 +8,7 @@ struct ChatView: View {
     @State private var messageText = ""
     @State private var messages: [Message] = []
     @State private var listener: ListenerRegistration?
+    @State private var selectedMessageId: String?
     
     var body: some View {
         VStack {
@@ -14,21 +16,51 @@ struct ChatView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 8) {
                         ForEach(messages) { message in
-                            MessageView(message: message, isCurrentUser: message.senderId == Auth.auth().currentUser?.uid)
-                                .id(message.id)
+                            VStack(alignment: .leading) {
+                                MessageView(message: message, isCurrentUser: message.senderId == Auth.auth().currentUser?.uid)
+                                    .id(message.id)
+                                    .transition(.move(edge: .bottom))
+                                    .animation(.snappy, value: messages.count)
+                                    .contextMenu {
+                                            ForEach(["👍", "😂", "😢", "❤️", "😮", "👏"], id: \.self) { reaction in
+                                                Button(action: {
+                                                    addReaction(to: message, reaction: reaction)
+                                                }) {
+                                                    Text(reaction)
+                                                }
+                                            }
+                                        .frame(maxWidth: .infinity)
+                                    }
+                                
+                                if !message.reactions.isEmpty {
+                                    HStack {
+                                        ForEach(message.reactions.keys.sorted(), id: \.self) { userId in
+                                            Text(message.reactions[userId] ?? "")
+                                                .padding(4)
+                                                .background(Color.gray.opacity(0.2))
+                                                .cornerRadius(8)
+                                        }
+                                    }
+                                    .padding(message.isSentByCurrentUser ? .trailing : .leading, 8) // Adjust padding based on sender
+                                    .frame(maxWidth: .infinity, alignment: message.isSentByCurrentUser ? .trailing : .leading)
+                                }
+                            }
                         }
                     }
                     .padding()
                 }
-                .onChange(of: messages.count) { _ in
+                .onChange(of: messages.count) { _, _ in
                     if let lastMessage = messages.last {
-                        scrollView.scrollTo(lastMessage.id, anchor: .bottom)
+                        withAnimation {
+                            scrollView.scrollTo(lastMessage.id, anchor: .bottom)
+                        }
                     }
                 }
+                
             }
             
             HStack {
-                TextField("Type your message...", text: $messageText)
+                TextField("Type fast...", text: $messageText)
                     .padding(10)
                     .background(Color(UIColor.systemGray6))
                     .cornerRadius(10)
@@ -49,15 +81,28 @@ struct ChatView: View {
         .navigationBarTitle(chat.otherUser.username, displayMode: .inline)
         .onAppear {
             fetchMessages()
+            authorizeNotification()
         }
         .onDisappear {
             listener?.remove()
         }
     }
     
+    func authorizeNotification(){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("Notification authorization granted.")
+            } else if let error = error {
+                print("Error requesting notification authorization: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func fetchMessages() {
         listener = FirestoreService.shared.observeMessages(chatId: chat.id) { messages in
-            self.messages = messages
+            withAnimation {
+                self.messages = messages
+            }
         }
     }
     
@@ -70,6 +115,26 @@ struct ChatView: View {
             } else {
                 messageText = "" // Clear message text field after sending message
             }
+        }
+    }
+    
+    func addReaction(to message: Message, reaction: String) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        FirestoreService.shared.addReaction(chatId: chat.id, messageId: message.id, reaction: reaction, userId: userId) { error in
+            if let error = error {
+                print("Error adding reaction: \(error.localizedDescription)")
+            }
+        }
+    }
+}
+
+struct MessageListView: View {
+    var messages: [Message]
+    
+    var body: some View {
+        List(messages) { message in
+            MessageView(message: message, isCurrentUser: message.senderId == Auth.auth().currentUser?.uid)
         }
     }
 }

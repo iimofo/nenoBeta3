@@ -1,5 +1,6 @@
 import SwiftUI
 import Firebase
+import UserNotifications
 
 struct ChatListView: View {
     @State private var chats: [Chat] = []
@@ -34,6 +35,7 @@ struct ChatListView: View {
             fetchChats()
             randomString = generateRandomString(length: 25)
 //            print(randomString)
+            authorizeNotification()
         }
         .onDisappear {
             listener?.remove()
@@ -126,5 +128,11 @@ struct ChatListView: View {
             let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
             return String((0..<length).map { _ in letters.randomElement()! })
         }
+    
+    func authorizeNotification(){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in
+            
+        }
+    }
     
 }
