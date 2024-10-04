@@ -6,12 +6,14 @@ struct User: Codable, Identifiable {
     let uid: String
     var username: String
     var email: String
-    // Add other properties as needed
+    var profileImageUrl: String? // Add this property
 
     enum CodingKeys: String, CodingKey {
         case uid
         case username
         case email
         case documentID
+        case profileImageUrl // Add this key
     }
 }
+

@@ -12,7 +12,14 @@ struct MainView: View {
                         ChatListView()
                     }
                     .tabItem {
-                        Label("Chat List", systemImage: "ellipsis.message.fill")
+                        Label("Chat`s", systemImage: "bubble.left.and.text.bubble.right.fill")
+                    }
+                    
+                    NavigationView {
+                        ExploreView()
+                    }
+                    .tabItem {
+                        Label("Posts", systemImage: "pc")
                     }
                     
                     NavigationView {
@@ -26,7 +33,7 @@ struct MainView: View {
                         settingView()
                     }
                     .tabItem {
-                        Label("Settings", systemImage: "gear")
+                        Label("Settings", systemImage: "wrench.adjustable.fill")
                     }
                 }
             } else {

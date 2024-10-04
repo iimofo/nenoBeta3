@@ -16,22 +16,22 @@ struct MessageView: View {
                         .background(isCurrentUser ? Color.blue : Color.green.opacity(0.5))
                         .cornerRadius(10)
                         .foregroundColor(isCurrentUser ? .white : .primary)
-                        .padding(.horizontal, 5)
-                        .padding(.vertical, 5)
+//                        .padding(.horizontal, 1)
+//                        .padding(.vertical, 10)
                     
                     Text(message.formattedTimestamp)
                         .font(.caption)
                         .foregroundColor(.gray)
-                        .padding(.horizontal, 5)
+                        .padding(.horizontal, 1)
                 }
                 
+                
                 if !isCurrentUser {
-                    Spacer()
+//                    Spacer()
                 }
             }
-            
-
-
         }
     }
 }
+
+

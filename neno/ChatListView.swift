@@ -11,18 +11,38 @@ struct ChatListView: View {
         List(chats) { chat in
             NavigationLink(destination: ChatView(chat: chat)) {
                 HStack {
-                    Image(systemName: "lock.shield.fill")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(.gray)
-                        .padding(.trailing, 10)
-                    
+                    if let profileImageUrl = chat.otherUser.profileImageUrl, let url = URL(string: profileImageUrl) {
+                        AsyncImage(url: url) { phase in
+                            switch phase {
+                            case .empty:
+                                ProgressView()
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 50, height: 50)
+                                    .clipShape(Circle())
+                            case .failure:
+                                Image(systemName: "person.circle")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(.gray)
+                            @unknown default:
+                                EmptyView()
+                            }
+                        }
+                    } else {
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.gray)
+                    }
+
                     VStack(alignment: .leading) {
                         Text(chat.otherUser.username)
                             .font(.headline)
                             .foregroundColor(.primary)
                         
-//                        Text("Last message preview...")
                         Text(randomString)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
@@ -34,7 +54,6 @@ struct ChatListView: View {
         .onAppear {
             fetchChats()
             randomString = generateRandomString(length: 25)
-//            print(randomString)
             authorizeNotification()
         }
         .onDisappear {
@@ -93,7 +112,6 @@ struct ChatListView: View {
                 }
             }
     }
-// main
     
     func fetchUser(userId: String, completion: @escaping (User?) -> Void) {
         Firestore.firestore().collection("users").document(userId).getDocument { snapshot, error in
@@ -120,19 +138,12 @@ struct ChatListView: View {
         }
     }
     
-//    func genEncString(){
-//        self.ecrpString = rand
-//    }
-    
     func generateRandomString(length: Int) -> String {
-            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            return String((0..<length).map { _ in letters.randomElement()! })
-        }
-    
-    func authorizeNotification(){
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in
-            
-        }
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0..<length).map { _ in letters.randomElement()! })
     }
     
+    func authorizeNotification() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
+    }
 }

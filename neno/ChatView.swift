@@ -9,6 +9,7 @@ struct ChatView: View {
     @State private var messages: [Message] = []
     @State private var listener: ListenerRegistration?
     @State private var selectedMessageId: String?
+    @EnvironmentObject var firestoreService: FirestoreService
     
     var body: some View {
         VStack {
@@ -22,13 +23,13 @@ struct ChatView: View {
                                     .transition(.move(edge: .bottom))
                                     .animation(.snappy, value: messages.count)
                                     .contextMenu {
-                                            ForEach(["👍", "😂", "😢", "❤️", "😮", "👏"], id: \.self) { reaction in
-                                                Button(action: {
-                                                    addReaction(to: message, reaction: reaction)
-                                                }) {
-                                                    Text(reaction)
-                                                }
+                                        ForEach(["👍", "😂", "😢", "❤️", "😮", "👏"], id: \.self) { reaction in
+                                            Button(action: {
+                                                addReaction(to: message, reaction: reaction)
+                                            }) {
+                                                Text(reaction)
                                             }
+                                        }
                                         .frame(maxWidth: .infinity)
                                     }
                                 
@@ -41,7 +42,7 @@ struct ChatView: View {
                                                 .cornerRadius(8)
                                         }
                                     }
-                                    .padding(message.isSentByCurrentUser ? .trailing : .leading, 8) // Adjust padding based on sender
+                                    .padding(message.isSentByCurrentUser ? .trailing : .leading, 2) // Adjust padding based on sender
                                     .frame(maxWidth: .infinity, alignment: message.isSentByCurrentUser ? .trailing : .leading)
                                 }
                             }
@@ -51,12 +52,9 @@ struct ChatView: View {
                 }
                 .onChange(of: messages.count) { _, _ in
                     if let lastMessage = messages.last {
-                        withAnimation {
-                            scrollView.scrollTo(lastMessage.id, anchor: .bottom)
-                        }
+                        scrollView.scrollTo(lastMessage.id, anchor: .bottom)
                     }
                 }
-                
             }
             
             HStack {
@@ -100,9 +98,7 @@ struct ChatView: View {
     
     func fetchMessages() {
         listener = FirestoreService.shared.observeMessages(chatId: chat.id) { messages in
-            withAnimation {
-                self.messages = messages
-            }
+            self.messages = messages
         }
     }
     
@@ -138,3 +134,27 @@ struct MessageListView: View {
         }
     }
 }
+
+//struct ChatView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let sampleUser = User(
+//            documentID: "sampleDocumentID",
+//            uid: "sampleUID",
+//            username: "Sample User",
+//            email: "sampleuser@example.com",
+//            profileImageUrl: nil
+//        )
+//        
+//        let sampleChat = Chat(
+//            id: "sampleChatId",
+//            otherUser: sampleUser
+//        )
+//        
+//        ChatView(chat: sampleChat)
+//            .environmentObject(FirestoreService())
+//    }
+//}
+//#Preview {
+//    MainView()
+//        .environmentObject(FirestoreService())
+//}

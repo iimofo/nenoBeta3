@@ -11,6 +11,9 @@
 		DE213AC22C1C927500E7A863 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE213AC12C1C927500E7A863 /* ContentView.swift */; };
 		DE213AC42C1C927700E7A863 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE213AC32C1C927700E7A863 /* Assets.xcassets */; };
 		DE213AC72C1C927700E7A863 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE213AC62C1C927700E7A863 /* Preview Assets.xcassets */; };
+		DE2D7F612C79242B0068A722 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE2D7F602C79242B0068A722 /* GoogleService-Info.plist */; };
+		DE7FA1B32C2AFA23003A1089 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7FA1B22C2AFA23003A1089 /* ExploreView.swift */; };
+		DE7FA1B52C2AFE06003A1089 /* addPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7FA1B42C2AFE06003A1089 /* addPostView.swift */; };
 		DEFCC65F2C1C93D700409134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DEFCC65E2C1C93D700409134 /* FirebaseAuth */; };
 		DEFCC6612C1C93D700409134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DEFCC6602C1C93D700409134 /* FirebaseFirestore */; };
 		DEFCC6632C1C93D700409134 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DEFCC6622C1C93D700409134 /* FirebaseStorage */; };
@@ -18,7 +21,6 @@
 		DEFCC6672C1C942E00409134 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFCC6662C1C942E00409134 /* LoginView.swift */; };
 		DEFCC6692C1C943E00409134 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFCC6682C1C943E00409134 /* SignupView.swift */; };
 		DEFCC66B2C1C945300409134 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFCC66A2C1C945300409134 /* ChatListView.swift */; };
-		DEFCC66D2C1C94CA00409134 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEFCC66C2C1C94CA00409134 /* GoogleService-Info.plist */; };
 		DEFCC66F2C1C957C00409134 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFCC66E2C1C957C00409134 /* Message.swift */; };
 		DEFCC6712C1C958F00409134 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFCC6702C1C958F00409134 /* FirestoreService.swift */; };
 		DEFCC6732C1C95F000409134 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFCC6722C1C95F000409134 /* User.swift */; };
@@ -33,16 +35,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DE213ABC2C1C927500E7A863 /* neno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neno.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE213ABC2C1C927500E7A863 /* Otto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Otto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE213ABF2C1C927500E7A863 /* nenoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nenoApp.swift; sourceTree = "<group>"; };
 		DE213AC12C1C927500E7A863 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DE213AC32C1C927700E7A863 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE213AC62C1C927700E7A863 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DE2D7F602C79242B0068A722 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DE7FA1B22C2AFA23003A1089 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		DE7FA1B42C2AFE06003A1089 /* addPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addPostView.swift; sourceTree = "<group>"; };
 		DEFCC6642C1C941E00409134 /* LoginOrSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignupView.swift; sourceTree = "<group>"; };
 		DEFCC6662C1C942E00409134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DEFCC6682C1C943E00409134 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		DEFCC66A2C1C945300409134 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
-		DEFCC66C2C1C94CA00409134 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/kt1/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DEFCC66E2C1C957C00409134 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DEFCC6702C1C958F00409134 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		DEFCC6722C1C95F000409134 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -82,7 +86,7 @@
 		DE213ABD2C1C927500E7A863 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DE213ABC2C1C927500E7A863 /* neno.app */,
+				DE213ABC2C1C927500E7A863 /* Otto.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,10 +94,12 @@
 		DE213ABE2C1C927500E7A863 /* neno */ = {
 			isa = PBXGroup;
 			children = (
-				DEFCC66C2C1C94CA00409134 /* GoogleService-Info.plist */,
+				DE2D7F602C79242B0068A722 /* GoogleService-Info.plist */,
 				DE213ABF2C1C927500E7A863 /* nenoApp.swift */,
 				DE213AC12C1C927500E7A863 /* ContentView.swift */,
 				DEFCC6812C1F534700409134 /* MainView.swift */,
+				DE7FA1B22C2AFA23003A1089 /* ExploreView.swift */,
+				DE7FA1B42C2AFE06003A1089 /* addPostView.swift */,
 				DEFCC66E2C1C957C00409134 /* Message.swift */,
 				DEFCC6722C1C95F000409134 /* User.swift */,
 				DEFCC6642C1C941E00409134 /* LoginOrSignupView.swift */,
@@ -131,9 +137,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DE213ABB2C1C927500E7A863 /* neno */ = {
+		DE213ABB2C1C927500E7A863 /* Otto */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DE213ACA2C1C927700E7A863 /* Build configuration list for PBXNativeTarget "neno" */;
+			buildConfigurationList = DE213ACA2C1C927700E7A863 /* Build configuration list for PBXNativeTarget "Otto" */;
 			buildPhases = (
 				DE213AB82C1C927500E7A863 /* Sources */,
 				DE213AB92C1C927500E7A863 /* Frameworks */,
@@ -143,7 +149,7 @@
 			);
 			dependencies = (
 			);
-			name = neno;
+			name = Otto;
 			packageProductDependencies = (
 				DEFCC65E2C1C93D700409134 /* FirebaseAuth */,
 				DEFCC6602C1C93D700409134 /* FirebaseFirestore */,
@@ -151,7 +157,7 @@
 				DEFCC67B2C1C9C3500409134 /* FirebaseFirestoreSwift */,
 			);
 			productName = neno;
-			productReference = DE213ABC2C1C927500E7A863 /* neno.app */;
+			productReference = DE213ABC2C1C927500E7A863 /* Otto.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -185,7 +191,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DE213ABB2C1C927500E7A863 /* neno */,
+				DE213ABB2C1C927500E7A863 /* Otto */,
 			);
 		};
 /* End PBXProject section */
@@ -197,7 +203,7 @@
 			files = (
 				DE213AC72C1C927700E7A863 /* Preview Assets.xcassets in Resources */,
 				DE213AC42C1C927700E7A863 /* Assets.xcassets in Resources */,
-				DEFCC66D2C1C94CA00409134 /* GoogleService-Info.plist in Resources */,
+				DE2D7F612C79242B0068A722 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,12 +220,14 @@
 				DEFCC6752C1C963300409134 /* ChatView.swift in Sources */,
 				DEFCC6672C1C942E00409134 /* LoginView.swift in Sources */,
 				DEFCC6842C1F59FB00409134 /* settingView.swift in Sources */,
+				DE7FA1B52C2AFE06003A1089 /* addPostView.swift in Sources */,
 				DE213AC02C1C927500E7A863 /* nenoApp.swift in Sources */,
 				DEFCC66B2C1C945300409134 /* ChatListView.swift in Sources */,
 				DEFCC6802C1C9D5800409134 /* UserProfileView.swift in Sources */,
 				DEFCC6772C1C968D00409134 /* Chat.swift in Sources */,
 				DEFCC67E2C1C9D4200409134 /* SearchView.swift in Sources */,
 				DEFCC6732C1C95F000409134 /* User.swift in Sources */,
+				DE7FA1B32C2AFA23003A1089 /* ExploreView.swift in Sources */,
 				DEFCC6712C1C958F00409134 /* FirestoreService.swift in Sources */,
 				DEFCC6692C1C943E00409134 /* SignupView.swift in Sources */,
 				DEFCC6822C1F534700409134 /* MainView.swift in Sources */,
@@ -360,6 +368,7 @@
 				DEVELOPMENT_TEAM = 5ZJ8B8VBZ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Otto;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -389,6 +398,7 @@
 				DEVELOPMENT_TEAM = 5ZJ8B8VBZ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Otto;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -419,7 +429,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DE213ACA2C1C927700E7A863 /* Build configuration list for PBXNativeTarget "neno" */ = {
+		DE213ACA2C1C927700E7A863 /* Build configuration list for PBXNativeTarget "Otto" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DE213ACB2C1C927700E7A863 /* Debug */,
